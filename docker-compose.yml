@@ -1,0 +1,53 @@
+# version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: school_app
+    volumes:
+      - ./:/var/www
+    ports:
+      - "8001:8000"   # Laravel accessible sur 8001
+    depends_on:
+      - db
+    networks:
+      - school_network
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  db:
+    image: postgres:16
+    container_name: school_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: school
+      POSTGRES_USER: school_user
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5434:5432"   # ⚠️ Port différent pour éviter conflit
+    volumes:
+      - school_pgdata:/var/lib/postgresql/data
+    networks:
+      - school_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: school_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@school.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8082:80"   # ⚠️ Port différent
+    depends_on:
+      - db
+    networks:
+      - school_network
+
+volumes:
+  school_pgdata:
+
+networks:
+  school_network:
+    driver: bridge
