@@ -20,5 +20,9 @@ class eleve extends Model
     public function proviseur()
     {
         return $this->hasOne(Proviseur::class);
-    }
+}
+        public function parents()
+{
+    return $this->belongsToMany(Parents::class, 'parent_eleve', 'eleve_id', 'parent_id');
+}
 }
