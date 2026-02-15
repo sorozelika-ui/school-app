@@ -6,28 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-          Schema::create('proviseurs', function (Blueprint $table) {
+        Schema::create('class_prof_annee', function (Blueprint $table) {
             $table->id();
+
+            // Clés étrangères
             $table->foreignId('professeur_id')->constrained('professeurs')->onDelete('cascade');
-            $table->foreignId('eleve_id')->constrained('eleve')->onDelete('cascade');
-            $table->foreignId('educateur_id')->constrained('educateurs')->onDelete('cascade');
             $table->foreignId('classe_id')->constrained('classes')->onDelete('cascade');
             $table->foreignId('annee_id')->constrained('annees')->onDelete('cascade');
-            $table->foreignId('chef_etablissement_id')->constrained('chef_etablissement')->onDelete('cascade');
+
             $table->timestamps();
+
+            // Pour éviter les doublons
+            $table->unique(['professeur_id', 'classe_id', 'annee_id']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('proviseurs');
+        Schema::dropIfExists('class_prof_annee');
     }
 };

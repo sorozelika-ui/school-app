@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parent_eleve', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('parent_id')->constrained('parents')->onDelete('cascade');
-    $table->foreignId('eleve_id')->constrained('eleves')->onDelete('cascade');
+        Schema::create('periodes', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('annee_id')->constrained('annees')->onDelete('cascade'); // lien vers l'année
+    $table->string('libelle'); // Exemple : "Trimestre 1" ou "Semestre 2"
+    $table->date('debut');
+    $table->date('fin');
     $table->timestamps();
-        });
+});
+
     }
 
     /**
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parent_eleve');
+        Schema::dropIfExists('periodes');
     }
 };

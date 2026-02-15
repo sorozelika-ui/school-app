@@ -13,18 +13,31 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
+
+            // Clé étrangère vers l'élève
             $table->foreignId('eleve_id')->constrained('eleves')->onDelete('cascade');
-            $table->foreignId('classe_id')->constrained('classes')->onDelete('cascade');
-            $table->foreignId('annee_id')->constrained('annees')->onDelete('cascade');
-            $table->foreignId('matiere_id')->constrained('matieres')->onDelete('cascade');
+
+            // Clé étrangère vers le professeur
             $table->foreignId('professeur_id')->constrained('professeurs')->onDelete('cascade');
-            $table->float('note');
+
+            // Clé étrangère vers la matière
+            $table->foreignId('matiere_id')->constrained('matieres')->onDelete('cascade');
+
+            // Note de l'élève
+            $table->decimal('note', 5, 2); // ex: 15.50
+
+            // Indique le trimestre ou semestre
+            $table->string('periode')->nullable(); // "Trimestre 1" ou "Semestre 2"
+
             $table->timestamps();
         });
     }
 
-    public function down(): void {
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
         Schema::dropIfExists('notes');
     }
-
 };

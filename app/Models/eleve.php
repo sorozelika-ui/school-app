@@ -1,28 +1,25 @@
 <?php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class eleve extends Model
+class Eleve extends Model
 {
-    use HasFactory;
-
-    protected $fillable = ['nom', 'prenom', 'contact', 'email', 'quartier'];
-
-    // Un élève peut avoir plusieurs notes
-    public function notes()
-    {
-        return $this->hasMany(Notes::class);
-    }
-
-    // Un élève peut avoir un proviseur
-    public function proviseur()
-    {
-        return $this->hasOne(Proviseur::class);
-}
-        public function parents()
+  protected $table='eleves';
+  protected $fillable=[
+    'matricule',
+    'nom',
+    'prenom',
+    'email',
+    'contact',
+    'quartier',
+    'classe_id',
+    'date_naissance',
+  ];
+  public function classe()
 {
-    return $this->belongsToMany(Parents::class, 'parent_eleve', 'eleve_id', 'parent_id');
+    return $this->belongsTo(\App\Models\Classe::class);
 }
+
 }

@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Matiere extends Model
 {
-       protected $fillable = ['nom'];
+    protected $fillable = ['libelle'];
 
-    public function notes()
-    {
-        return $this->hasMany(Notes::class);
+    public function notes() {
+        return $this->hasMany(Note::class);
     }
-
 }
