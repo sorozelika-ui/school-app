@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('contact')->nullable();
             $table->string('email')->nullable();
             $table->string('pass_prof')->nullable();
-            $table->text('mat_enseign')->nullable(); // autres informations
+            $table->text('info_prof')->nullable(); // autres informations
             $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@ class Classe extends Model
     protected $table='classes';
     protected $fillable = ['libelle'];
 
-    public function eleves()
+    public function eleves() 
     {
         return $this->hasMany(Eleve::class);
     }

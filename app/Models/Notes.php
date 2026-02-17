@@ -7,18 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Notes extends Model
 {
     protected $table='notes';
-    protected $file=[
+    protected $fillable=[
         'note',
         'periode',
+        'matiere_id',
+        'professeur_id',
+        'eleve_id',
     ];
    public function matiere() {
     return $this->belongsTo(Matiere::class);
 }
 public function prof() {
-    return $this->belongsTo(Professeur::class);
+    return $this->belongsTo(Professeur::class, 'professeur_id');
 }
 public function elev() {
-    return $this->belongsTo(Eleve::class);
+    return $this->belongsTo(Eleve::class, 'eleve_id');
 }
 
 }

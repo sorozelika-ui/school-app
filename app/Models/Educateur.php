@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Educateur extends Model
 {
     protected $table='educateurs';
-    protected $file=[
+    protected $fillable=[
         'nom',
         'prenom',
         'email',

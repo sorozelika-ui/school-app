@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ParentEleve extends Model
 {
-    protected $table = 'parents';
+    protected $table = 'parent_eleves';
     protected $fillable = [ 
     'nom_pere',
     'prenom_pere',

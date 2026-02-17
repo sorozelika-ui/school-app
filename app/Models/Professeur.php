@@ -16,7 +16,7 @@ class Professeur extends Model
         'contact',
         'email',
         'pass_prof',
-        'mat_enseign',
+        'info_prof',
     ];
 
     // Relation future avec classes et années

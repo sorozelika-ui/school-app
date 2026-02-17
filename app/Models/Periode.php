@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Periode extends Model
 {
     protected $stable='periodes';
-    protected $file=['libelle','debut','fin'];
+    protected $fillable=['libelle','debut','fin'];
  
    public function annee()
 {

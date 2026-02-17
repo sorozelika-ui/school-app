@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Eleve_Parent extends Model
 {
     protected $table='eleve_parents';
-    protected $file=[
+    protected $fillable=[
         'eleves_id',
         'parent_id'
     ];

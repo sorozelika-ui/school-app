@@ -8,7 +8,7 @@ class Annee extends Model
 {
     protected $table='annees';
 
-    protected $file=['libelle',];
+    protected $fillable=['libelle',];
 
     public function periodes()
 {
